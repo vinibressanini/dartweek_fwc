@@ -1,4 +1,4 @@
-import 'package:dartweek_fwc/app/core/theme/theme_config.dart';
+import 'package:dartweek_fwc/app/core/ui/theme/theme_config.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/splash_page.dart';

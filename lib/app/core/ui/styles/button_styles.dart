@@ -1,4 +1,4 @@
-import 'package:dartweek_fwc/app/core/styles/text_styles.dart';
+import 'package:dartweek_fwc/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import 'colors_app.dart';
@@ -51,4 +51,8 @@ class ButtonStyles {
           fontSize: 14,
         ),
       );
+}
+
+extension ButtonStylesExtensions on BuildContext {
+  ButtonStyles get buttonStyles => ButtonStyles.instance;
 }

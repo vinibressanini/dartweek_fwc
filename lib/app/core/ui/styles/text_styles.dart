@@ -1,4 +1,4 @@
-import 'package:dartweek_fwc/app/core/styles/colors_app.dart';
+import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
 import 'package:flutter/widgets.dart';
 
 class TextStyles {
@@ -60,6 +60,9 @@ class TextStyles {
 
   TextStyle get labelTextField =>
       textSecondaryFontRegular.copyWith(color: ColorsApp.instance.darkGrey);
+
+  TextStyle get textSecondaryFontExtraBoldPrimaryColor =>
+      textSecondaryFontExtraBold.copyWith(color: ColorsApp.instance.primary);
 }
 
 extension TextStylesExtensions on BuildContext {

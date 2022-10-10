@@ -1,4 +1,4 @@
-import 'package:dartweek_fwc/app/core/styles/colors_app.dart';
+import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
 import 'package:flutter/material.dart';
 
 import '../styles/text_styles.dart';
