@@ -1,7 +1,9 @@
 import 'package:dartweek_fwc/app/core/ui/theme/theme_config.dart';
+import 'package:dartweek_fwc/app/pages/auth/login/login_page.dart';
+import 'package:dartweek_fwc/app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/splash_page.dart';
+import 'pages/splash/splash_page.dart';
 
 class FwcAlbumApp extends StatelessWidget {
   const FwcAlbumApp({super.key});
@@ -12,7 +14,11 @@ class FwcAlbumApp extends StatelessWidget {
       title: 'Fifa World Cup Album',
       debugShowCheckedModeBanner: false,
       theme: ThemeConfig.theme,
-      routes: {'/': (context) => const SplashPage()},
+      routes: {
+        '/': (_) => const SplashPage(),
+        '/home': (_) => const HomePage(),
+        '/auth/login': (_) => const LoginPage()
+      },
     );
   }
 }

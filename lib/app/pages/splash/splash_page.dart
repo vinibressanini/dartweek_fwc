@@ -5,7 +5,7 @@ import 'package:dartweek_fwc/app/core/ui/styles/text_styles.dart';
 import 'package:dartweek_fwc/app/core/ui/widgets/button.dart';
 import 'package:flutter/material.dart';
 
-import '../core/ui/helpers/messages.dart';
+import '../../core/ui/helpers/messages.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
