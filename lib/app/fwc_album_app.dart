@@ -1,10 +1,9 @@
-import 'package:dartweek_fwc/app/core/ui/theme/theme_config.dart';
-import 'package:dartweek_fwc/app/pages/auth/login/login_page.dart';
-import 'package:dartweek_fwc/app/pages/home/home_page.dart';
-import 'package:dartweek_fwc/app/pages/splash/splash_route.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/splash/splash_page.dart';
+import 'core/ui/theme/theme_config.dart';
+import 'pages/auth/login/login_page.dart';
+import 'pages/home/home_page.dart';
+import 'pages/splash/splash_route.dart';
 
 class FwcAlbumApp extends StatelessWidget {
   const FwcAlbumApp({super.key});
