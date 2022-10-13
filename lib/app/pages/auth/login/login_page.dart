@@ -1,6 +1,7 @@
 import 'package:dartweek_fwc/app/core/ui/styles/button_styles.dart';
 import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
 import 'package:dartweek_fwc/app/core/ui/styles/text_styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/ui/widgets/button.dart';
@@ -102,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                             text: 'Cadastre-se',
                             style: context.textStyles.textSecondaryFontMedium
                                 .copyWith(color: Colors.yellow),
+                            recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).pushNamed('/auth/register')
                           ),
                         ],
                       ),
