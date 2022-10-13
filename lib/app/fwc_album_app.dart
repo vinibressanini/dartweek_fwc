@@ -1,14 +1,13 @@
-import 'package:dartweek_fwc/app/pages/auth/register/register_page.dart';
-import 'package:dartweek_fwc/app/pages/auth/register/register_route.dart';
-import 'package:dartweek_fwc/app/repository/auth/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 
 import 'core/rest/custom_dio.dart';
 import 'core/ui/theme/theme_config.dart';
-import 'pages/auth/login/login_page.dart';
+import 'pages/auth/login/login_route.dart';
+import 'pages/auth/register/register_route.dart';
 import 'pages/home/home_page.dart';
 import 'pages/splash/splash_route.dart';
+import 'repository/auth/auth_repository.dart';
 import 'repository/auth/auth_repository_impl.dart';
 
 class FwcAlbumApp extends StatelessWidget {
@@ -28,7 +27,7 @@ class FwcAlbumApp extends StatelessWidget {
         routes: {
           '/': (_) => const SplashRoute(),
           '/home': (_) => const HomePage(),
-          '/auth/login': (_) => const LoginPage(),
+          '/auth/login': (_) => const LoginRoute(),
           '/auth/register' : (_) => const RegisterRoute()
         },
       ),
