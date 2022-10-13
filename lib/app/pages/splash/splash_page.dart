@@ -3,18 +3,23 @@ import 'package:dartweek_fwc/app/core/ui/styles/button_styles.dart';
 import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
 import 'package:dartweek_fwc/app/core/ui/styles/text_styles.dart';
 import 'package:dartweek_fwc/app/core/ui/widgets/button.dart';
+import 'package:dartweek_fwc/app/pages/splash/presenter/splash_presenter.dart';
+import 'package:dartweek_fwc/app/pages/splash/view/splash_view_impl.dart';
 import 'package:flutter/material.dart';
 
-import '../core/ui/helpers/messages.dart';
+import '../../core/ui/helpers/messages.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+
+  final SplashPresenter presenter;
+
+  const SplashPage({super.key, required this.presenter});
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
+class _SplashPageState extends SplashViewImpl
     with Loader<SplashPage>, Messages<SplashPage> {
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,9 @@ class _SplashPageState extends State<SplashPage>
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).size.height * .19),
                 child: Button(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.presenter.chechLogin();
+                  },
                   width: MediaQuery.of(context).size.width * .9,
                   style: context.buttonStyles.yellowButton,
                   labelStyle:
