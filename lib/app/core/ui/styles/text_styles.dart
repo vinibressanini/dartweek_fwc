@@ -1,5 +1,5 @@
 import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class TextStyles {
   static TextStyles? _instance;
@@ -63,6 +63,11 @@ class TextStyles {
 
   TextStyle get textSecondaryFontExtraBoldPrimaryColor =>
       textSecondaryFontExtraBold.copyWith(color: ColorsApp.instance.primary);
+
+  TextStyle get titleWhite => textPrimaryFontBold.copyWith(
+        color: Colors.white,
+        fontSize: 22,
+      );
 }
 
 extension TextStylesExtensions on BuildContext {
