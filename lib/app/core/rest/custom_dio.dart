@@ -11,13 +11,13 @@ class CustomDio extends DioForNative {
       : super(BaseOptions(
             baseUrl: Env.instance['backend_base_url'] ?? '',
             connectTimeout: 5000,
-            receiveTimeout: 60000)) {
-    interceptors.add(LogInterceptor(
-        requestBody: true, responseBody: true, responseHeader: true));
-  }
+            receiveTimeout: 60000));
 
   CustomDio auth() {
     interceptors.add(_authInterceptor);
+    interceptors.add(LogInterceptor(
+        requestBody: true, responseBody: true, responseHeader: true));
+
     return this;
   }
 
