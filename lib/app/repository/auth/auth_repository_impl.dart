@@ -29,7 +29,8 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       await dio.unAuth().post('/api/register', data: registerModel.toMap());
     } on DioError catch (e, s) {
-      log('Erro ao registrar o usuário',error: e, stackTrace: s);
-    } throw RepositoryException(message: 'Erro ao registrar o usuário!');
+      log('Erro ao registrar o usuário', error: e, stackTrace: s);
+      throw RepositoryException(message: 'Erro ao registrar o usuário!');
+    }
   }
 }
