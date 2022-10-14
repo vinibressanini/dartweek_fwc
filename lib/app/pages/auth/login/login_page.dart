@@ -79,9 +79,10 @@ class _LoginPageState extends LoginViewImpl {
                     TextFormField(
                       obscureText: true,
                       controller: passwordEC,
-                       validator: Validatorless.multiple([
+                      validator: Validatorless.multiple([
                         Validatorless.required('O campo não pode estar vazio'),
-                        Validatorless.min(6,'A senha deve conter pelo menos 6 caracteres')
+                        Validatorless.min(
+                            6, 'A senha deve conter pelo menos 6 caracteres')
                       ]),
                       decoration: const InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -107,8 +108,9 @@ class _LoginPageState extends LoginViewImpl {
                     Button(
                       width: MediaQuery.of(context).size.width * .9,
                       onPressed: () {
-                        final validForm = formKey.currentState?.validate() ?? false;
-                        if(validForm) {
+                        final validForm =
+                            formKey.currentState?.validate() ?? false;
+                        if (validForm) {
                           showLoader();
                           widget.presenter.login(emailEC.text, passwordEC.text);
                         }
@@ -131,7 +133,7 @@ class _LoginPageState extends LoginViewImpl {
                       style: context.textStyles.textSecondaryFontMedium
                           .copyWith(color: Colors.white),
                       TextSpan(
-                        text: 'Não possui uma conta?',
+                        text: 'Não possui uma conta? ',
                         children: [
                           TextSpan(
                               text: 'Cadastre-se',
