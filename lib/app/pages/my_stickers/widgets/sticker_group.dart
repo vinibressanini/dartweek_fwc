@@ -1,9 +1,20 @@
-import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
-import 'package:dartweek_fwc/app/core/ui/styles/text_styles.dart';
+import 'package:dartweek_fwc/app/models/user_stickers_model.dart';
 import 'package:flutter/material.dart';
 
+import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
+import 'package:dartweek_fwc/app/core/ui/styles/text_styles.dart';
+import 'package:dartweek_fwc/app/models/group_stickers_model.dart';
+
 class StickerGroup extends StatelessWidget {
-  const StickerGroup({super.key});
+  final String statusFilter;
+
+  final GroupStickersModel group;
+
+  const StickerGroup({
+    Key? key,
+    required this.group,
+    required this.statusFilter,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +33,8 @@ class StickerGroup extends StatelessWidget {
                   alignment: const Alignment(0, -0.1),
                   widthFactor: 1,
                   heightFactor: 0.12,
-                  child: Image.asset(
-                    'assets/images/flags/BRA.png',
+                  child: Image.network(
+                    group.flag,
                     cacheWidth: (MediaQuery.of(context).size.width * 2).toInt(),
                   ),
                 ),
@@ -33,7 +44,7 @@ class StickerGroup extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
-              'Brasil',
+              group.countryName,
               style:
                   context.textStyles.textPrimaryFontBold.copyWith(fontSize: 26),
             ),
@@ -48,7 +59,30 @@ class StickerGroup extends StatelessWidget {
               crossAxisSpacing: 10,
             ),
             itemBuilder: (context, index) {
-              return Sticker(index: index);
+              final stickerNumber = '${group.stickersStart + index}';
+              final stickerList = group.stickers
+                  .where((sticker) => sticker.stickerNumber == stickerNumber);
+              final sticker = stickerList.isNotEmpty ? stickerList.first : null;
+              final stickersWidget = Sticker(
+                stickerNumber: stickerNumber.toString(),
+                sticker: sticker,
+                countryCode: group.countryCode,
+                countryName: group.countryName,
+              );
+
+              if (statusFilter == 'all') {
+                return stickersWidget;
+              } else if (statusFilter == 'missing') {
+                if (sticker == null) {
+                  return stickersWidget;
+                }
+              } else if (statusFilter == 'repeated') {
+                if (sticker != null && sticker.duplicates > 1) {
+                  return stickersWidget;
+                }
+              }
+
+              return const SizedBox.shrink();
             },
           )
         ],
@@ -58,9 +92,17 @@ class StickerGroup extends StatelessWidget {
 }
 
 class Sticker extends StatelessWidget {
-  final int index;
-
-  const Sticker({super.key, required this.index});
+  final String stickerNumber;
+  final UserStickersModel? sticker;
+  final String countryCode;
+  final String countryName;
+  const Sticker({
+    super.key,
+    required this.stickerNumber,
+    required this.sticker,
+    required this.countryCode,
+    required this.countryName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -69,34 +111,34 @@ class Sticker extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color:
-                index % 2 == 0 ? context.colors.primary : context.colors.grey),
+                sticker != null ? context.colors.primary : context.colors.grey),
         child: Column(
           children: [
             Visibility(
               maintainAnimation: true,
               maintainState: true,
               maintainSize: true,
-              visible: index % 2 == 0,
+              visible: (sticker?.duplicates ?? 0) > 0,
               child: Container(
                 padding: const EdgeInsets.all(2),
                 alignment: Alignment.topRight,
                 child: Text(
-                  '1',
+                  sticker?.duplicates.toString() ?? '',
                   style: context.textStyles.textSecondaryFontMedium
                       .copyWith(color: context.colors.yellow),
                 ),
               ),
             ),
             Text(
-              'BRA',
-              style: index % 2 == 0
+              countryCode,
+              style: sticker != null
                   ? context.textStyles.textSecondaryFontExtraBold
                       .copyWith(color: Colors.white)
                   : context.textStyles.textSecondaryFontExtraBold,
             ),
             Text(
-              '$index',
-              style: index % 2 == 0
+              stickerNumber,
+              style: sticker != null
                   ? context.textStyles.textSecondaryFontExtraBold
                       .copyWith(color: Colors.white)
                   : context.textStyles.textSecondaryFontExtraBold,
