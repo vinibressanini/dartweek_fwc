@@ -19,7 +19,7 @@ class StickersDetailsRoute extends FlutterGetItPageRoute {
         Bind.lazySingleton<FindStickerService>(
             (i) => FindStickerServiceImpl(repository: i())),
         Bind.lazySingleton<StickerDetailsPresenter>(
-            (i) => StickerDetailsPresenterImpl(service: i()))
+            (i) => StickerDetailsPresenterImpl(service: i(), repository: i()))
       ];
 
   @override

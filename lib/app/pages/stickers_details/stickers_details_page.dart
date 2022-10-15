@@ -29,6 +29,7 @@ class _StickersDetailsPageState extends StickerDetailsViewImpl {
         title: const Text('Detalhes Figurinha'),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -58,7 +59,9 @@ class _StickersDetailsPageState extends StickerDetailsViewImpl {
                   ),
                   const Spacer(),
                   RoundedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.presenter.decrementAmount();
+                    },
                     icon: Icons.remove,
                   ),
                   Padding(
@@ -69,15 +72,19 @@ class _StickersDetailsPageState extends StickerDetailsViewImpl {
                     ),
                   ),
                   RoundedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.presenter.incrementAmount();
+                    },
                     icon: Icons.add,
                   ),
                 ],
               ),
               const SizedBox(height: 10),
               Button.primary(
-                label: 'Adicionar Figurinha',
-                onPressed: () {},
+                label: hasSticker ? 'Atualizar Figurinha' : 'Adicionar figurinha',
+                onPressed: () {
+                  widget.presenter.saveSticker();
+                },
                 width: MediaQuery.of(context).size.width * .9,
               ),
               Button(
@@ -85,7 +92,9 @@ class _StickersDetailsPageState extends StickerDetailsViewImpl {
                 labelStyle:
                     context.textStyles.textSecondaryFontExtraBoldPrimaryColor,
                 label: 'Excluir Figurinha',
-                onPressed: () {},
+                onPressed: () {
+                  widget.presenter.deleteSticker();
+                },
                 width: MediaQuery.of(context).size.width * .9,
                 outlined: true,
               ),

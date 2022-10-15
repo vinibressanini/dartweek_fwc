@@ -28,12 +28,13 @@ class _MyStickersPageState extends MyStickersViewImpl {
         title: const Text('Minhas Figurinhas'),
       ),
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Column(
               children: [
                 StickerStatusFilter(filterSelected: filterStatus),
-                 StickerGroupFilter(countries : countries),
+                StickerGroupFilter(countries: countries),
               ],
             ),
           ),
@@ -41,7 +42,10 @@ class _MyStickersPageState extends MyStickersViewImpl {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 final group = album[index];
-                return StickerGroup(group: group, statusFilter: filterStatus,);
+                return StickerGroup(
+                  group: group,
+                  statusFilter: filterStatus,
+                );
               },
               childCount: album.length,
             ),

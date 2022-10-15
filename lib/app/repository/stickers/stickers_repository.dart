@@ -7,4 +7,6 @@ abstract class StickersRepository {
   Future<List<GroupStickersModel>> getMyAlbum(); 
   Future<StickerModel?> findStickerByCode(String stickerCode, String stickerName); 
   Future<StickerModel> create(RegisterStickerModel registerModel); 
+  Future<void> registerUserSticker(int stickerId, int amount);
+  Future<void> updateUserSticker(int stickerId, int amount);
 }
