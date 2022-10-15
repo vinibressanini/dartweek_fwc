@@ -45,7 +45,7 @@ class TextStyles {
 
   TextStyle get textSecondaryFontMedium => TextStyle(
         fontFamily: secondaryFont,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
       );
 
   TextStyle get textSecondaryFontBold => TextStyle(
