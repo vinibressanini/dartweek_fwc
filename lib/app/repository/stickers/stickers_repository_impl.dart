@@ -9,9 +9,9 @@ import 'package:dio/dio.dart';
 
 import '../../core/rest/custom_dio.dart';
 
-class StickersRepositoyrImpl implements StickersRepository {
+class StickersRepositoryImpl implements StickersRepository {
   final CustomDio dio;
-  StickersRepositoyrImpl({
+  StickersRepositoryImpl({
     required this.dio,
   });
 
@@ -59,7 +59,7 @@ class StickersRepositoyrImpl implements StickersRepository {
           {...registerModel.toMap(), 'sticker_image_upload': ''});
 
       final result = await dio.auth().post('/api/sticker', data: body);
-      return StickerModel.fromJson(result.data);
+      return StickerModel.fromMap(result.data);
     } on DioError catch (e, s) {
       log('Erro ao registrar figurinha', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao registrar figurinha');

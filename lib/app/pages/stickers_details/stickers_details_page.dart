@@ -1,14 +1,27 @@
-import 'package:dartweek_fwc/app/core/ui/styles/button_styles.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dartweek_fwc/app/core/ui/styles/button_styles.dart';
+import 'package:dartweek_fwc/app/pages/stickers_details/presenter/sticker_details_presenter.dart';
+import 'package:dartweek_fwc/app/pages/stickers_details/view/stickers_details_view_impl.dart';
 
 import '../../core/ui/styles/colors_app.dart';
 import '../../core/ui/styles/text_styles.dart';
 import '../../core/ui/widgets/button.dart';
 import '../../core/ui/widgets/rounded_button.dart';
 
-class StickersDetailsPage extends StatelessWidget {
-  const StickersDetailsPage({super.key});
+class StickersDetailsPage extends StatefulWidget {
+  final StickerDetailsPresenter presenter;
 
+  const StickersDetailsPage({
+    Key? key,
+    required this.presenter,
+  }) : super(key: key);
+
+  @override
+  State<StickersDetailsPage> createState() => _StickersDetailsPageState();
+}
+
+class _StickersDetailsPageState extends StickerDetailsViewImpl {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +34,9 @@ class StickersDetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('assets/images/sticker_pb.png'),
+              Image.asset(hasSticker
+                  ? 'assets/images/sticker.png'
+                  : 'assets/images/sticker_pb.png'),
               Row(
                 children: [
                   Padding(
@@ -30,11 +45,11 @@ class StickersDetailsPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'BRA 17',
+                          '$countryCode $stickerNumber',
                           style: context.textStyles.titleBlack,
                         ),
                         Text(
-                          'Brasil',
+                          countryName,
                           style: context.textStyles.textPrimaryFontRegular
                               .copyWith(color: context.colors.darkGrey),
                         ),
@@ -49,7 +64,7 @@ class StickersDetailsPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Text(
-                      '0',
+                      '$amount',
                       style: context.textStyles.textSecondaryFontMedium,
                     ),
                   ),

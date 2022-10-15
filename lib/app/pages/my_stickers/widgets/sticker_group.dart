@@ -108,7 +108,12 @@ class Sticker extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed('/stickers_details');
+        Navigator.of(context).pushNamed('/stickers_details', arguments: {
+          'countryCode': countryCode,
+          'countryName': countryName,
+          'stickerUser': sticker,
+          'stickerNumber': stickerNumber
+        });
       },
       child: Container(
         decoration: BoxDecoration(
