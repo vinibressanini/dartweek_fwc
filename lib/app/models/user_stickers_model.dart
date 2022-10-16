@@ -24,7 +24,7 @@ class UserStickersModel {
     result.addAll({'id': id});
     result.addAll({'id_user': idUser});
     result.addAll({'id_sticker': idSticker});
-    result.addAll({'duplicates': duplicates});
+    result.addAll({'duplicate_stickers': duplicates});
     result.addAll({'sticker_code': stickerCode});
     result.addAll({'sticker_number': stickerNumber});
   
@@ -36,7 +36,7 @@ class UserStickersModel {
       id: map['id']?.toInt() ?? 0,
       idUser: map['id_user']?.toInt() ?? 0,
       idSticker: map['id_sticker']?.toInt() ?? 0,
-      duplicates: map['duplicates']?.toInt() ?? 0,
+      duplicates: map['duplicate_stickers']?.toInt() ?? 0,
       stickerCode: map['sticker_code'] ?? '',
       stickerNumber: map['sticker_number'] ?? '',
     );

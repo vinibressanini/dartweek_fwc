@@ -51,5 +51,5 @@ abstract class MyStickersViewImpl extends State<MyStickersPage>
     setState(() {
       this.album = album;
     });
-  }
+  } 
 }

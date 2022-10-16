@@ -1,7 +1,7 @@
 import 'package:dartweek_fwc/app/pages/my_stickers/presenter/my_stickers_presenter.dart';
 import 'package:dartweek_fwc/app/pages/my_stickers/presenter/my_stickers_presenter_impl.dart';
 import 'package:dartweek_fwc/app/repository/stickers/stickers_repository.dart';
-import 'package:dartweek_fwc/app/repository/stickers/stickers_repositoyr_impl.dart';
+import 'package:dartweek_fwc/app/repository/stickers/stickers_repository_impl.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 
@@ -13,7 +13,7 @@ class MyStickersRoute extends FlutterGetItPageRoute {
   @override
   List<Bind<Object>> get bindings => [
         Bind.lazySingleton<StickersRepository>(
-            (i) => StickersRepositoyrImpl(dio: i())),
+            (i) => StickersRepositoryImpl(dio: i())),
         Bind.lazySingleton<MyStickersPresenter>(
             (i) => MyStickersPresenterImpl(repository: i()))
       ];
