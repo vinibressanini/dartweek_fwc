@@ -5,4 +5,5 @@ abstract class MyStickersView {
   void error(String message);
   void updateStatusFilter(status);
   void updateAlbum(List<GroupStickersModel> album);
+  void showLoader();
 }

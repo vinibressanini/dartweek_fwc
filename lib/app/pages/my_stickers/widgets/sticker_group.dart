@@ -1,9 +1,11 @@
 import 'package:dartweek_fwc/app/models/user_stickers_model.dart';
+import 'package:dartweek_fwc/app/pages/my_stickers/presenter/my_stickers_presenter.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dartweek_fwc/app/core/ui/styles/colors_app.dart';
 import 'package:dartweek_fwc/app/core/ui/styles/text_styles.dart';
 import 'package:dartweek_fwc/app/models/group_stickers_model.dart';
+import 'package:flutter_getit/flutter_getit.dart';
 
 class StickerGroup extends StatelessWidget {
   final String statusFilter;
@@ -107,13 +109,15 @@ class Sticker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed('/stickers_details', arguments: {
+      onTap: () async {
+        final presenter = context.get<MyStickersPresenter>();
+        await Navigator.of(context).pushNamed('/stickers_details', arguments: {
           'countryCode': countryCode,
           'countryName': countryName,
           'stickerUser': sticker,
           'stickerNumber': stickerNumber
         });
+        presenter.refresh();
       },
       child: Container(
         decoration: BoxDecoration(
